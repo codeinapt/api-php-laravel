@@ -4,16 +4,12 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Productos extends Migration
+class CreateProductosTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
-     */
-    /**
-     * Creación de funcion para crear migrción
-     * de tabla productos.
      */
     public function up()
     {
@@ -34,6 +30,6 @@ class Productos extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('productos');
     }
 }
