@@ -22,7 +22,14 @@ Mostrar lista de productos
             <td>{{ $producto->nombre }}</td>
             <td>{{ $producto->precio }}</td>
             <td>{{ $producto->descripcion }}</td>
-            <td>Editar | Borrar</td>
+            <td>Editar | 
+                <form action="{{ url('/productos/'.$producto->id) }}" method="post">
+                    @csrf
+                    {{ method_field('DELETE') }}
+                    <input type="submit" onclick="return confirm('Se eliminara permanentemente este producto desea continuar?')"
+                    value="Borrar">
+                </form>
+            </td>
         </tr>
         @endforeach
     </tbody>

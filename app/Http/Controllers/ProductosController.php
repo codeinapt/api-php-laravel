@@ -95,8 +95,13 @@ class ProductosController extends Controller
      * @param  \App\Models\productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(productos $productos)
+    public function destroy($id)
     {
-        //
+        /* Declaracion de la funcion borrar utilizando 
+         * el id de el producto que ya fue capturado 
+         * por el boton
+         */ 
+        Productos::destroy($id);
+        return redirect('productos');
     }
 }
