@@ -14,7 +14,8 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        //
+        //Envio de informacion de la vista index al controlador
+        return view('productos.index');
     }
 
     /**
@@ -24,7 +25,9 @@ class ProductosController extends Controller
      */
     public function create()
     {
-        //
+        //Envio de informacion de la vista create al controlador
+        return view('productos.create');
+        
     }
 
     /**
@@ -35,7 +38,17 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Función para recolectar datos enviados a traves del formulario
+        $datosProductos = request()->except('_token');
+
+        // Agregar archivo de tipo imagen recolectada al sistema en la ruta store/app/public/uploads
+        if($request->hasFile('Imagen')) {
+
+            $datosProductos['Imagen']=$request->file('Imagen')->store('uploads','public');
+        }
+        //Insercion en la base de datos de los registros recolectados 
+        Productos::insert($datosProductos);
+          return response()->json($datosProductos);
     }
 
     /**

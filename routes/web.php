@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Referencia de ruta a el archivo de control de produtos
+use App\Http\Controllers\ProductosController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Definición de ruta para acceder a las vista almacenadas en  views/productos
+
+Route::resource('productos', ProductosController::class);
