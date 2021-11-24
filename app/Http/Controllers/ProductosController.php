@@ -14,8 +14,12 @@ class ProductosController extends Controller
      */
     public function index()
     {
+        //Consualr información a la base de datos
+        $datos['productos']=Productos::paginate(5);
+
         //Envio de informacion de la vista index al controlador
-        return view('productos.index');
+        return view('productos.index',$datos);
+        
     }
 
     /**
