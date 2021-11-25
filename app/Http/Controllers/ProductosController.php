@@ -54,8 +54,9 @@ class ProductosController extends Controller
         }
         //Insercion en la base de datos de los registros recolectados 
         Productos::insert($datosProductos);
-          return response()->json($datosProductos);
-    }
+          //return response()->json($datosProductos);
+            return redirect('productos')->with('mensaje','Producto agregado con éxito');
+        }
 
     /**
      * Display the specified resource.
@@ -124,6 +125,6 @@ class ProductosController extends Controller
          * por el boton
          */ 
         Productos::destroy($id);
-        return redirect('productos');
+        return redirect('productos')->with('mensaje','Producto Eliminado');
     }
 }

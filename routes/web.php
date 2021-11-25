@@ -23,3 +23,7 @@ Route::get('/', function () {
 // Definición de ruta para acceder a las vista almacenadas en  views/productos
 
 Route::resource('productos', ProductosController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

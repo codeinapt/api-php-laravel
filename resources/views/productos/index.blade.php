@@ -1,4 +1,8 @@
-Mostrar lista de productos
+
+
+@if(Session::has('mensaje'))
+{{ Session::get('mensaje') }}
+@endif
 <a href="{{ url('productos/create') }}">Registrar Nuevo Empleado</a>
 <!-- Creación de formulario para listar los datos almacenados -->
 <table class="table table-dark">
