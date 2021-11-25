@@ -24,6 +24,16 @@ class ProductosController extends Controller
         
     }
 
+    public function tienda()
+    {
+        //Consualr información a la base de datos
+        $datos['productos']=Productos::paginate(5);
+
+        //Envio de informacion de la vista index al controlador
+        return view('productos.tienda',$datos);
+        
+    }
+
     /**
      * Show the form for creating a new resource.
      *
