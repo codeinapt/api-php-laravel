@@ -1,4 +1,5 @@
 Mostrar lista de productos
+<a href="{{ url('productos/create') }}">Registrar Nuevo Empleado</a>
 <!-- Creación de formulario para listar los datos almacenados -->
 <table class="table table-dark">
     <thead class="thead-light">
