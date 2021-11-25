@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\productos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class ProductosController extends Controller
 {
@@ -72,9 +74,11 @@ class ProductosController extends Controller
      * @param  \App\Models\productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function edit(productos $productos)
+    public function edit($id)
     {
         //
+        $producto=Productos::findOrFail($id);
+        return view('productos.edit', compact('producto'));
     }
 
     /**
@@ -84,9 +88,22 @@ class ProductosController extends Controller
      * @param  \App\Models\productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, productos $productos)
+    public function update(Request $request, $id)
     {
         //
+        //Función para recolectar datos enviados a traves del formulario
+        $datosProductos = request()->except(['_token','_method']);
+        // Agregar archivo de tipo imagen recolectada al sistema en la ruta store/app/public/uploads
+        if($request->hasFile('Imagen')) {
+            $producto=Productos::findOrFail($id);
+            Storage::delete('public/'.$producto->imagen);
+            $datosProductos['Imagen']=$request->file('Imagen')->store('uploads','public');
+        }
+        //Busqueda de el registro que coincida con el id
+        Productos::where('id','=',$id)->update($datosProductos);
+        //Buscar la informcion y retornar los datos actualizados
+        $producto=Productos::findOrFail($id);
+        return view('productos.edit', compact('producto'));
     }
 
     /**

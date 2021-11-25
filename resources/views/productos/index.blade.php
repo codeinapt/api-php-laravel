@@ -18,11 +18,16 @@ Mostrar lista de productos
         @foreach( $productos as $producto)
         <tr>
             <td>{{ $producto->id }}</td>
-            <td>{{ $producto->imagen }}</td>
+            <td>
+                <img src="{{ asset('storage').'/'.$producto->imagen  }}" alt="" width="100">
+            </td>
             <td>{{ $producto->nombre }}</td>
             <td>{{ $producto->precio }}</td>
             <td>{{ $producto->descripcion }}</td>
-            <td>Editar | 
+            <td> 
+                <a href="{{ url('/productos/'.$producto->id.'/edit') }}">Editar</a>
+                 | 
+                <!-- Configuración de el boton borrar para eliminar los registros de la base de datos -->
                 <form action="{{ url('/productos/'.$producto->id) }}" method="post">
                     @csrf
                     {{ method_field('DELETE') }}
