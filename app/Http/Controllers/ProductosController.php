@@ -114,6 +114,11 @@ class ProductosController extends Controller
      */
     public function destroy($id)
     {
+        // Funcion para borrado de las imagenes de la carpeta storage
+        $producto=Productos::findOrFail($id);
+        if(Storage::delete('public/'.$producto->imagen)){
+            Productos::destroy($id);
+        }
         /* Declaracion de la funcion borrar utilizando 
          * el id de el producto que ya fue capturado 
          * por el boton
