@@ -44,6 +44,19 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
+
+        // Validación de campos vacios
+        $campos=[
+            'Nombre'=>'required|string|max:150',
+            'Precio'=>'required|numeric',
+            'descripcion'=>'required|string|max:250',
+            'Imagen'=>'required|max:10000|mimes:jpeg,png,jpg'
+        ];
+        $mensaje=[
+            'required'=>' :attribute es requerido',
+            'Imagen.required'=>'La foto es requerida'
+        ];
+        $this->validate($request, $campos,$mensaje);
         //Función para recolectar datos enviados a traves del formulario
         $datosProductos = request()->except('_token');
 

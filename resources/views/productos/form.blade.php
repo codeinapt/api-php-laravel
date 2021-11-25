@@ -1,28 +1,45 @@
 <h1>{{ $modo }} Producto</h1>
+
+ @if(count($errors)>0)
+
+    <div class="alert alert-danger" role="alert">
+        <ul>
+            @foreach( $errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+
+    </div>
+    
+        
+    
+@endif
+
+ <div class="form-group">
 <label for="Nombre">Nombre</label>
-    <input type="text" value="{{ isset($producto->nombre)?$producto->nombre:'' }}" name="Nombre" id="Nombre">
+    <input class="form-control" type="text" value="{{ isset($producto->nombre)?$producto->nombre:old('Nombre') }}" name="Nombre" id="Nombre">
+</div>
 
-    <br><br>
-
+<div class="form-group">
     <label for="Precio">Precio</label>
-    <input type="text" name="Precio" value="{{ isset($producto->precio)?$producto->precio:'' }}" id="Precio">
-    
-    <br><br>
-    
+    <input class="form-control" type="text" name="Precio" value="{{ isset($producto->precio)?$producto->precio:old('Precio') }}" id="Precio">
+</div>
+
+<div class="form-group">    
     <label for="Descripcion">Descripción</label>
-    <input type="text" name="descripcion" value="{{ isset($producto->descripcion)?$producto->descripcion:'' }}" id="Descripcion">
-    
-    <br><br>
+    <input class="form-control" type="text" name="descripcion" value="{{ isset($producto->descripcion)?$producto->descripcion:old('descripcion') }}" id="Descripcion">
+</div>
 
-
-    <label for="Imagen">Imagen</label>
+<div class="form-group">
+    <label for="Imagen"></label>
     @if(isset($producto->imagen))
-    <img src="{{ asset('storage').'/'.$producto->imagen  }}" alt="" width=100"">
+    <img class="img-thumbnail img-fluid" src="{{ asset('storage').'/'.$producto->imagen  }}" alt="" width=100"">
     @endif
-    <input type="file" name="Imagen" value="" id="Imagen">
+    <input class="form-control" type="file" name="Imagen" value="" id="Imagen">
     <br>
     <br>
-    
-    <input type="submit" value="{{ $modo }} datos">
+</div>
 
-    <a href="{{ url('productos/') }}">Regresar</a>
+    <input type="submit" value="{{ $modo }} Producto" class="btn btn-success">
+
+    <a href="{{ url('productos/') }}" class="btn btn-info">Regresar</a>

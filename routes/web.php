@@ -22,9 +22,9 @@ Route::get('/', function () {
 
 // Definición de ruta para acceder a las vista almacenadas en  views/productos
 
-Route::resource('productos', ProductosController::class);
+Route::resource('productos', ProductosController::class)->middleware('auth');
 
-Auth::routes();
+Auth::routes(['reset'=>false]);
 
 Route::get('/home', [ProductosController::class, 'index'])->name('home');
 
