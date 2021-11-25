@@ -17,7 +17,7 @@ use App\Http\Controllers\ProductosController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 // Definición de ruta para acceder a las vista almacenadas en  views/productos
@@ -26,4 +26,10 @@ Route::resource('productos', ProductosController::class);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [ProductosController::class, 'index'])->name('home');
+
+// Ruta de vista principal luego que el usuario se logee
+Route::group(['midleware' => 'auth'], function (){
+
+    Route::get('/', [ProductosController::class, 'index'])->name('home');
+});
