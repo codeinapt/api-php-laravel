@@ -66,7 +66,13 @@ class ProductosController extends Controller
             'required'=>' :attribute es requerido',
             'Imagen.required'=>'La foto es requerida'
         ];
+
+        if($request->hasFile('Imagen')) {
+            
+            
+        }    
         $this->validate($request, $campos,$mensaje);
+
         //Función para recolectar datos enviados a traves del formulario
         $datosProductos = request()->except('_token');
 

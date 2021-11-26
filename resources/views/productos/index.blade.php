@@ -8,7 +8,6 @@
 @endif
 <a href="{{ url('productos/create') }}" class="btn btn-success">Registrar Nuevo Producto</a>
 
-<a href="{{ url('productos/tienda') }}" class="btn btn-secondary">Tienda</a>
 <!-- Creación de formulario para listar los datos almacenados -->
 <br>
 <br>
